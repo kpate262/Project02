@@ -1,7 +1,7 @@
 /*gradeutil.cpp*/
 
 //
-// <<YOUR NAME HERE>>
+// <<Kisan Patel>>
 // U. of Illinois, Chicago
 // CS 341, Spring 2019
 // Project #02: GradeUtil API
