@@ -407,9 +407,47 @@ vector<Course> FindCourses(const College& college, string instructorPrefix)
 {
   vector<Course>  courses;
   
-  //
-  // TODO:
-  //
+  for(const Dept &d: college.Depts){
+      for(const Course &c: d.Courses){
+            string g = "(" + instructorPrefix + ")(.*)";
+            regex r(g);
+
+            if(regex_match(c.Instructor, r)){
+                courses.push_back(c);
+            }
+      }
+  }
     
+  if(courses.empty() == true){
+      return courses;
+  }
+  else{
+      if(courses.size() >= 1){
+          sort(courses.begin(), courses.end(),
+              [](Course s, Course h){
+                  if(s.Instructor < h.Instructor){
+                      return true;
+                  }
+                  else if(s.Instructor > h.Instructor){
+                      return false;
+                  }
+                  else if(s.Instructor == h.Instructor){
+                      if(s.Number < h.Number){
+                          return true;
+                      }
+                      else{
+                          return false;
+                      }
+                  }
+                  else{
+                      return false;
+                  }
+              }
+                 
+              );
+          
+      }
+  }  
+  
   return courses;
 }
