@@ -11,6 +11,7 @@
 #include <sstream>
 #include <vector>
 #include<iterator>
+#include <regex>
 #include <algorithm>
 
 #include "gradeutil.h"
@@ -262,9 +263,6 @@ vector<Course> FindCourses(const Dept& dept, int courseNumber)
       
   }
     
-  
-  
-    
   return courses;
 }
 
@@ -287,12 +285,55 @@ vector<Course> FindCourses(const Dept& dept, int courseNumber)
 //
 vector<Course> FindCourses(const Dept& dept, string instructorPrefix)
 {
-  vector<Course>  courses;
+  vector<Course> courses;
+  int index = 0;
+  for(Course c: dept.Courses){
+    string g = "(" + instructorPrefix + ")(.*)";
+    regex r(g);
+    
+    if(regex_match(c.Instructor, r)){
+        courses.push_back(c);
+    }
+   
+  }
   
-  //
-  // TODO:
-  //
+  if(courses.empty() == true){
+      return courses;
+  }
+  else{
+      if(courses.size() >= 1){
+          sort(courses.begin(), courses.end(),
+               [](Course numberA, Course numberB){
+                   if(numberA.Number < numberB.Number){
+                       return true;
+                   }
+                   
+                   else if(numberA.Number == numberB.Number){
+                       //sort(courses.begin(), courses.end(), //ascending order by section number
+                          // [](Course sectionA, Course sectionB){
+                               if(numberA.Section < numberB.Section){
+                                   return true;
+                               }
+                               else{
+                                   return false;
+                               }
+                           //
+                        ///);//inner sort function
+                   }
+                    else{
+                        return false;
+                    }
 
+               
+              }
+            );//outter sort function
+      }
+  }
+              
+  
+      
+  
+    
   return courses;
 }
 
