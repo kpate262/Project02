@@ -329,10 +329,6 @@ vector<Course> FindCourses(const Dept& dept, string instructorPrefix)
             );//outter sort function
       }
   }
-              
-  
-      
-  
     
   return courses;
 }
@@ -352,10 +348,45 @@ vector<Course> FindCourses(const College& college, int courseNumber)
 {
   vector<Course>  courses;
   
-  //
-  // TODO:
-  //
+  for(const Dept &d: college.Depts){
+      for(const Course &c: d.Courses){
+          if(c.Number == courseNumber){
+              courses.push_back(c);
+          }
+      }
+  }
+    
+  if(courses.empty() == true){
+      return courses;
+  }
+  else{
+      if(courses.size() >= 1){
+          sort(courses.begin(), courses.end(),
+              [](Course s, Course h){
+                  if(s.Dept < h.Dept){
+                      return true;
+                  }
+                  else if(s.Dept == h.Dept){
+                      if(s.Number > s.Number){
+                          return false;
+                      }
+                      else{
+                          return true;
+                      }
+                  }
+                  else{
+                      return false;
+                  }
+              }
+              
+              
+              
+              );
+          
+      }
+  }  
   
+    
   return courses;
 }
 
