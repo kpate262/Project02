@@ -51,7 +51,8 @@ Course ParseCourse(string csvline)
   
     Course c(parse[0], parse[3], stoi(parse[1]), stoi(parse[2]), parse[14], stoi(parse[4]), 
             stoi(parse[5]), stoi(parse[6]), stoi(parse[7]), stoi(parse[8]), stoi(parse[9]),
-            stoi(parse[10]), stoi(parse[11]), stoi(parse[12]), stoi(parse[13]));
+             
+            stoi(parse[11]), stoi(parse[12]), stoi(parse[13]), stoi(parse[10]));
     
   return c;
 }
@@ -237,9 +238,7 @@ vector<Course> FindCourses(const Dept& dept, int courseNumber)
 {
   vector<Course>  courses;
   
-  //
-  // TODO:
-  //
+  
     
   return courses;
 }
