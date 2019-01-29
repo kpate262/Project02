@@ -99,8 +99,6 @@ double GetDFWRate(const Dept& dept, int& DFW, int& N)
   DFW = 0;
   N   = 0;
     
-  //vector<Course>::iterator c;
-  
   for(const Course &c: dept.Courses){
       if(c.getGradingType() != Course::Letter){
           continue;
@@ -122,7 +120,7 @@ double GetDFWRate(const College& college, int& DFW, int& N)
 
 
     for( const Dept &d: college.Depts){
-        for( const Course &c : d.Courses){
+        for( const Course &c: d.Courses){
            if(c.getGradingType() != Course::Letter){
                continue;
            }else{
@@ -236,7 +234,34 @@ GradeStats GetGradeDistribution(const College& college)
 //
 vector<Course> FindCourses(const Dept& dept, int courseNumber)
 {
-  vector<Course>  courses;
+  vector<Course> courses;
+  int index = 0;
+  for(Course c: dept.Courses){
+      if(c.Number == courseNumber){
+          courses.push_back(c);
+      }
+  }
+  
+  if(courses.empty() == true){
+      return courses;
+  }
+  else{
+      if(courses.size() >= 1){
+          sort(courses.begin(), courses.end(), 
+               [](Course sectionA, Course sectionB){
+                   if(sectionA.Section < sectionB.Section){
+                       return true;
+                   }
+                   else{
+                       return false;
+                   }
+               }
+
+              );
+      }
+      
+  }
+    
   
   
     
