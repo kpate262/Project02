@@ -29,7 +29,8 @@ using namespace std;
 // object, which is then returned.  The given line must have
 // the following format:
 //
-//   Dept,Number,Section,Title,A,B,C,D,F,I,NR,S,U,W,Instructor
+//   Dept,Number,Section,Title,A,B,C,D,F,I,NR,S, U , W,Instructor
+//   0      1     2       3    4 5 6 7 8 9 10 11 12  13 14
 //
 // Example:
 //   BIOE,101,01,Intro to Bioengineering,22,8,2,1,0,1,0,0,0,5,Eddington
@@ -41,27 +42,18 @@ using namespace std;
 //
 Course ParseCourse(string csvline)
 {
-    /*char*::iterator it; 
-  vector<string> parsedit;
-  char buffer[30];
-  int index = 0;
-  for ( it = csvline.begin() ; it < csvline.end(); it++)
-  {
-      if(strcmp(*it, ',') == 0){
-          parsedit.push_back(buffer);
-          index = 0;
-      }
-      else{
-          buffer[index] = *it;
-          index++;
-      }
-  }
+    vector<string> parse(15);
+    stringstream ss(csvline);
     
-  Course C(parsedit[0], parsedit[1], parsedit[2], parsedit[3], stoi(parsedit[4]), stoi(parsedit[5]), stoi(parsedit[6]),
-          stoi(parsedit[7]), stoi(parsedit[8]), stoi(parsedit[9]), stoi(parsedit[10]), stoi(parsedit[11]), stoi(parsedit[12]), stoi(parsedit[13]),
-          stoi(parsedit[14]));*/
+    for(string &s: parse){
+        getline(ss, s, ',');
+    }
   
-  return Course();
+    Course c(parse[0], parse[3], stoi(parse[1]), stoi(parse[2]), parse[14], stoi(parse[4]), 
+            stoi(parse[5]), stoi(parse[6]), stoi(parse[7]), stoi(parse[8]), stoi(parse[9]),
+            stoi(parse[10]), stoi(parse[11]), stoi(parse[12]), stoi(parse[13]));
+    
+  return c;
 }
 
 
