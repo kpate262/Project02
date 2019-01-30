@@ -435,6 +435,14 @@ vector<Course> FindCourses(const College& college, string instructorPrefix)
                       if(s.Number < h.Number){
                           return true;
                       }
+                      else if(s.Number == h.Number){
+                          if(s.Section < h.Section){
+                               return true;
+                           }
+                           else{
+                               return false;
+                           }
+                      }
                       else{
                           return false;
                       }
