@@ -161,8 +161,7 @@ GradeStats GetGradeDistribution(const Course& c)
              ((c.NumA*100.0)/n), ((c.NumB*100.0)/n), ((c.NumC*100.0)/n), ((c.NumD*100.0)/n),
                 ((c.NumF*100.0)/n) );
    if(c.getGradingType() != Course::Letter){
-       GradeStats e(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-       return e;
+       return GradeStats();
     }
    
   return g;  
@@ -171,8 +170,7 @@ GradeStats GetGradeDistribution(const Course& c)
 GradeStats GetGradeDistribution(const Dept& dept)
 {
   if(dept.Courses.empty() == true){
-      GradeStats t(0,0,0,0,0,0,0,0,0,0,0);
-      return t;
+      return GradeStats();
   }
   vector<int> percents(5);
   for(const int &i: percents)  {
@@ -201,10 +199,9 @@ GradeStats GetGradeDistribution(const Dept& dept)
 
 GradeStats GetGradeDistribution(const College& college)
 {
-   /* if(college.Depts.empty() == true){
-      GradeStats t(0,0,0,0,0,0,0,0,0,0,0);
-      return t;
-  }*/
+   if(college.Depts.empty() == true){
+      return GradeStats();
+  }
   vector<int> percents(5);
   for(const int &i: percents)  {
       percents[i] = 0;
