@@ -86,6 +86,7 @@ double GetDFWRate(const Course& c, int& DFW, int& N)
   N   = 0;
     
     if(c.getGradingType() != Course::Letter){
+        DFW = N = 0;
        return 0.0;
    }
   
@@ -93,7 +94,7 @@ double GetDFWRate(const Course& c, int& DFW, int& N)
   N =  c.NumA +  c.NumB +  c.NumC +  c.NumD +  c.NumF +  c.NumW;
    
   
-  return (DFW*100.0/N);
+  return ((DFW*100.0)/N);
 }
 
 double GetDFWRate(const Dept& dept, int& DFW, int& N)
@@ -108,6 +109,8 @@ double GetDFWRate(const Dept& dept, int& DFW, int& N)
     
   for(const Course &c: dept.Courses){
       if(c.getGradingType() != Course::Letter){
+          DFW += 0;
+          N += 0;
           continue;
        }else{
           N += c.NumA + c.NumB + c.NumC + c.NumD + c.NumF + c.NumW;
@@ -116,7 +119,7 @@ double GetDFWRate(const Dept& dept, int& DFW, int& N)
       
   }
   
-  return (DFW*100.0/N);
+  return ((DFW*100.0)/N);
 }
 
 
@@ -132,6 +135,8 @@ double GetDFWRate(const College& college, int& DFW, int& N)
     for( const Dept &d: college.Depts){
         for( const Course &c: d.Courses){
            if(c.getGradingType() != Course::Letter){
+               DFW += 0;
+               N += 0;
                continue;
            }else{
               N += c.NumA + c.NumB + c.NumC + c.NumD + c.NumF + c.NumW;
@@ -140,7 +145,7 @@ double GetDFWRate(const College& college, int& DFW, int& N)
         }
     }
 
-  return (DFW*100.0/N);
+  return ((DFW*100.0)/N);
 }
 
 
