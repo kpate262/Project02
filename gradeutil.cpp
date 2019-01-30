@@ -201,7 +201,7 @@ GradeStats GetGradeDistribution(const Dept& dept)
 
 GradeStats GetGradeDistribution(const College& college)
 {
-    if(college.Depts.Courses.empty() == true){
+    if(college.Depts.empty() == true){
       GradeStats t(0,0,0,0,0,0,0,0,0,0,0);
       return t;
   }
