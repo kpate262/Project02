@@ -89,7 +89,7 @@ double GetDFWRate(const Course& c, int& DFW, int& N)
   N =  c.NumA +  c.NumB +  c.NumC +  c.NumD +  c.NumF +  c.NumW;
    
    if(c.getGradingType() != Course::Letter){
-       return 0;
+       return 0.0;
    }
   
   return (DFW*100.0/N);
