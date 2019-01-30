@@ -201,10 +201,10 @@ GradeStats GetGradeDistribution(const Dept& dept)
 
 GradeStats GetGradeDistribution(const College& college)
 {
-    if(college.Depts.empty() == true){
+   /* if(college.Depts.empty() == true){
       GradeStats t(0,0,0,0,0,0,0,0,0,0,0);
       return t;
-  }
+  }*/
   vector<int> percents(5);
   for(const int &i: percents)  {
       percents[i] = 0;
