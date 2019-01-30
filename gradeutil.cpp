@@ -94,7 +94,7 @@ double GetDFWRate(const Course& c, int& DFW, int& N)
   N =  c.NumA +  c.NumB +  c.NumC +  c.NumD +  c.NumF +  c.NumW;
    
   
-  return ((DFW*100.0)/N);
+  return ((DFW*1.0/N)*100.0);
 }
 
 double GetDFWRate(const Dept& dept, int& DFW, int& N)
@@ -129,7 +129,7 @@ double GetDFWRate(const Dept& dept, int& DFW, int& N)
     }
 
   
-  return ((DFW*100.0)/N);
+  return ((DFW*1.0/N)*100.0);
 }
 
 
@@ -166,7 +166,7 @@ double GetDFWRate(const College& college, int& DFW, int& N)
         return 0.0;
     }
 
-  return ((DFW*100.0)/N);
+  return ((DFW*1.0/N)*100.0);
 }
 
 
