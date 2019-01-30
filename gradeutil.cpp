@@ -155,6 +155,7 @@ double GetDFWRate(const College& college, int& DFW, int& N)
 //
 GradeStats GetGradeDistribution(const Course& c)
 {
+    
     int n =  c.NumA +  c.NumB +  c.NumC +  c.NumD +  c.NumF;
    GradeStats g(n, c.NumA, c.NumB, c.NumC, c.NumD, c.NumF,
              ((c.NumA*100.0)/n), ((c.NumB*100.0)/n), ((c.NumC*100.0)/n), ((c.NumD*100.0)/n),
@@ -169,6 +170,10 @@ GradeStats GetGradeDistribution(const Course& c)
 
 GradeStats GetGradeDistribution(const Dept& dept)
 {
+  if(dept.Courses.empty() == true){
+      GradeStats t(0,0,0,0,0,0,0,0,0,0,0);
+      return t;
+  }
   vector<int> percents(5);
   for(const int &i: percents)  {
       percents[i] = 0;
@@ -196,6 +201,10 @@ GradeStats GetGradeDistribution(const Dept& dept)
 
 GradeStats GetGradeDistribution(const College& college)
 {
+    if(college.Depts.Courses.empty() == true){
+      GradeStats t(0,0,0,0,0,0,0,0,0,0,0);
+      return t;
+  }
   vector<int> percents(5);
   for(const int &i: percents)  {
       percents[i] = 0;
@@ -206,14 +215,14 @@ GradeStats GetGradeDistribution(const College& college)
          if(c.getGradingType() != Course::Letter){
              continue;
          }
-            else{
-                 n +=  c.NumA +  c.NumB +  c.NumC +  c.NumD +  c.NumF;
-                 percents[0] += c.NumA;
-                 percents[1] += c.NumB;
-                 percents[2] += c.NumC;
-                 percents[3] += c.NumD;
-                 percents[4] += c.NumF;
-            }
+        else{
+             n +=  c.NumA +  c.NumB +  c.NumC +  c.NumD +  c.NumF;
+             percents[0] += c.NumA;
+             percents[1] += c.NumB;
+             percents[2] += c.NumC;
+             percents[3] += c.NumD;
+             percents[4] += c.NumF;
+        }
       }
   }
     GradeStats g(n, percents[0], percents[1], percents[2], percents[3], percents[4],
