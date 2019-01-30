@@ -124,6 +124,7 @@ double GetDFWRate(const Dept& dept, int& DFW, int& N)
       
   }
     if(index == index2){
+        DFW = N = 0;
         return 0.0;
     }
 
@@ -161,6 +162,7 @@ double GetDFWRate(const College& college, int& DFW, int& N)
     }
     
     if(index == index2){
+        DFW = N = 0;
         return 0.0;
     }
 
