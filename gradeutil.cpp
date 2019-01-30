@@ -99,6 +99,11 @@ double GetDFWRate(const Dept& dept, int& DFW, int& N)
 {
   DFW = 0;
   N   = 0;
+  
+  if(dept.Courses.empty() == true){
+      DFW = N = 0.0;
+      return 0.0;
+  }
     
   for(const Course &c: dept.Courses){
       if(c.getGradingType() != Course::Letter){
@@ -118,7 +123,10 @@ double GetDFWRate(const College& college, int& DFW, int& N)
 {
   DFW = 0;
   N   = 0;
-
+   if(college.Depts.empty() == true){
+        DFW = N = 0.0;
+      return 0.0;
+  }
 
     for( const Dept &d: college.Depts){
         for( const Course &c: d.Courses){
